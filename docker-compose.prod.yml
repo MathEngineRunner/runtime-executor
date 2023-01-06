@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile.prod
+    command: gunicorn --bind 0.0.0.0:5000 --chdir /home/app/web/ wsgi:app
+    
+    volumes:
+      - ./src/:/usr/src/app/
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env.prod
