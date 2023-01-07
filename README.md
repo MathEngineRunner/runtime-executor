@@ -1,5 +1,7 @@
 # runtime-executor
 
+[![Build Status](https://github.com/rsouza01/runtime-executor/workflows/publish/badge.svg)](https://github.com/rsouza01/runtime-executor/actions)
+
 ## Virtual env
 
 python -m venv venv
