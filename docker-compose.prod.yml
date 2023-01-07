@@ -5,7 +5,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.prod
-    # command: gunicorn --bind 0.0.0.0:5000 --chdir /home/app/web/src/ wsgi:app
     command: gunicorn --bind 0.0.0.0:5000 --chdir /home/app/web/ wsgi:app
     # command: tail -F anything
     volumes:

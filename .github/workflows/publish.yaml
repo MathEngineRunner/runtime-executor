@@ -20,6 +20,7 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        docker build . --tag ghcr.io/rsouza01/runtime-executor:latest
-        docker run ghcr.io/rsouza01/runtime-executor:latest
-        docker push ghcr.io/rsouza01/runtime-executor:latest
+        make prod-build
+        # docker build . --tag ghcr.io/rsouza01/runtime-executor:latest
+        # docker run ghcr.io/rsouza01/runtime-executor:latest
+        # docker push ghcr.io/rsouza01/runtime-executor:latest
