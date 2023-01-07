@@ -31,7 +31,6 @@ dev-stop:
 	docker-compose down
 
 prod-build:
-	# docker-compose -f docker-compose.prod.yml build
 	docker build . --tag $(REPO):$(GIT_HASH) --tag $(REPO):latest ; \
 	docker push ghcr.io/rsouza01/runtime-executor:latest;
 
