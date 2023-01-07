@@ -1,4 +1,4 @@
-name: publish
+name: Publish
 
 on:
   push:
@@ -7,10 +7,19 @@ on:
 jobs:
   publish-image:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
-    - name: Build the project Docker image
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build the Docker image
       run: |
-        echo $CR_PAT | docker login ghcr.io -u rsouza01 --password-stdin
-      env:
-        CR_PAT: ${{ secrets.SA_PAT }}
+        docker build . --tag ghcr.io/rsouza01/runtime-executor:latest
+        docker run ghcr.io/rsouza01/runtime-executor:latest
+        docker push ghcr.io/rsouza01/runtime-executor:latest
