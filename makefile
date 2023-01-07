@@ -31,9 +31,10 @@ dev-stop:
 	docker-compose down
 
 prod-build:
+	@echo "Building " $(REPO):$(GIT_HASH)
 	docker build . --tag $(REPO):$(GIT_HASH) --tag $(REPO):latest ; \
 	docker push $(REPO):$(GIT_HASH) ; \
-	docker push $(REPO):latest ; \
+	docker push $(REPO):latest ;
 
 prod-run:
 	docker-compose -f docker-compose.prod.yml up -d --build
