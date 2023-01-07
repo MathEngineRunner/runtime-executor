@@ -1,0 +1,14 @@
+name: publish
+
+on: [push]
+
+jobs:
+  publish-hello-world-image:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the project Docker image
+      run: |
+        echo $CR_PAT | docker login ghcr.io -u rsouza01 --password-stdin
+      env:
+        CR_PAT: ${{ secrets.SA_PAT }}
