@@ -30,7 +30,10 @@ dev-stop:
 	docker-compose down
 
 prod-build:
-	docker-compose -f docker-compose.prod.yml build
+	# docker-compose -f docker-compose.prod.yml build
+	docker build . --tag ghcr.io/rsouza01/runtime-executor:latest; \
+	docker run ghcr.io/rsouza01/runtime-executor:latest; \
+	docker push ghcr.io/rsouza01/runtime-executor:latest; \
 
 prod-run:
 	docker-compose -f docker-compose.prod.yml up -d --build
