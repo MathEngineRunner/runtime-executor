@@ -1,6 +1,12 @@
 version: '3.8'
 
 services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web
   web:
     build:
       context: ./
@@ -9,7 +15,7 @@ services:
     # command: tail -F anything
     volumes:
       - ./src/:/usr/src/app/
-    ports:
-      - 5000:5000
+    expose:
+      - 5000
     env_file:
       - ./.env.prod
