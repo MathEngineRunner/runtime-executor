@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-
+REPO := ghcr.io/rsouza01/runtime-executor
 
 help:
 	@echo 'Available commands:'
@@ -31,9 +31,8 @@ dev-stop:
 
 prod-build:
 	# docker-compose -f docker-compose.prod.yml build
-	docker build . --tag ghcr.io/rsouza01/runtime-executor:latest; \
-	docker run ghcr.io/rsouza01/runtime-executor:latest; \
-	docker push ghcr.io/rsouza01/runtime-executor:latest; \
+	docker build . --tag "$(REPO):$(git log -1 --pretty=%h)" --tag "$(REPO):latest"; \
+	docker push ghcr.io/rsouza01/runtime-executor:latest;
 
 prod-run:
 	docker-compose -f docker-compose.prod.yml up -d --build
