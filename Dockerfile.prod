@@ -49,11 +49,12 @@ WORKDIR $APP_HOME
 # install dependencies
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
+COPY --from=builder /usr/src/app/entrypoint.prod.sh .
 RUN pip install --upgrade pip
 RUN pip install --no-cache /wheels/*
 
 # copy project
-COPY . $APP_HOME
+COPY ./src/ $APP_HOME
 
 # chown all the files to the app user
 RUN chown -R app:app $APP_HOME
